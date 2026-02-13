@@ -1,0 +1,31 @@
+{
+  "extensionName": {
+    "message": "CESy",
+    "description": "Content Extraction System"
+  },
+
+  "messageTitle": {
+    "message": "...Nous extrayons le menu web...."
+  },
+
+  "bodyMessage": {
+    "message": "Ce processus prendra quelques minutes. S'il vous plaît, attendez."
+  },
+
+  "linksNull": {
+    "message": "Désolé, mais nous ne pouvons pas extraire le contenu principal de cette page."
+  },
+
+  "extensionDescription": {
+    "message": "Extraire le modèle de document web",
+    "description": "Description de l'extension."
+  },
+
+  "errorTitle": {
+    "message": "Erreur"
+  },
+
+  "errorMessage": {
+    "message": "CESy ne peut pas travailler sur ce site web pour des raisons de sécurité."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "extensionName": {
+    "message": "CESy",
+    "description": "Content Extraction System"
+  },
+  
+  "backToWeb": {
+	"message": "Vuelve a la página original"
+  },
+  
+  "backToContent": {
+	"message": "Vuelve al contenido extraído"
+  },
+
+  "linksNull": {
+    "message": "Lo sentimos, no podemos extraer el contenido de esta página porque no tiene enlaces a su sitio web (es una página aislada)."
+  },
+
+  "messageTitle": {
+    "message": "...Detectando si la página es contenido o página índice..."
+  },
+
+  "bodyMessage": {
+    "message": "Este proceso puede llevar unos minutos. Por favor espere."
+  },
+
+  "extensionDescription": {
+    "message": "Detecta si una página web es contenido o página índice.",
+    "description": "Detecta si una página web es contenido o página índice."
+  },
+
+  "errorTitle": {
+    "message": "Error"
+  },
+
+  "errorMessage": {
+    "message": "CESy no puede funcionar en esta página por motivos de seguridad"
+  }
+}

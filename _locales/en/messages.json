@@ -1,0 +1,43 @@
+{
+  "extensionName": {
+    "message": "CESy",
+    "description": "Content Extraction System"
+  },
+
+  "messageTitle": {
+    "message": "...Detecting the web page type..."
+  },
+
+  "bodyMessage": {
+    "message": "This process can take a few minutes. Please wait."
+  },
+
+  "extensionDescription": {
+    "message": "Detects if a web page is a content page.",
+    "description": "Detects if a web page is a content page."
+  },
+
+  "linksNull": {
+    "message": "Sorry, but we can't extract the main content of this page because it does not contain links to the web page (isolated webpage)."
+  },
+
+  "backToWeb": {
+    "message": "Back to the original website"
+  },
+
+  "extractingMessage": {
+    "message": "Extracting..."
+  },
+
+  "backToContent": {
+    "message": "Back to the extracted content"
+  },
+
+  "errorTitle": {
+    "message": "Error"
+  },
+
+  "errorMessage": {
+    "message": "CESy can't work on this website for security reasons"
+  }
+}

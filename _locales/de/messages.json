@@ -1,0 +1,32 @@
+{
+  "extensionName": {
+    "message": "CESy",
+    "description": "Content Extraction System"
+  },
+
+  "messageTitle": {
+    "message": "...Extrahieren der Inhalt...."
+  },
+
+  "linksNull": {
+    "message": "Es tut uns Leid, aber wir können den Hauptinhalt dieser Seite nicht extrahieren."
+  },
+
+  "bodyMessage": {
+    "message": "Dieser Vorgang dauert einige Minuten. Warten Sie mal."
+  },
+
+  "extensionDescription": {
+    "message": "Diese Erweiterung extrahiert der Inhalt von einer Webseite.",
+    "description": "Description of the extension."
+  },
+
+  
+  "errorTitle": {
+    "message": "Fehler"
+  },
+
+  "errorMessage": {
+    "message": "Aus Sicherheitsgründen ConEx funktioniert auf dieser Website nicht"
+  }
+}
