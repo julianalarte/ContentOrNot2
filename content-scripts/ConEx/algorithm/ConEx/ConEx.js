@@ -17,7 +17,7 @@ ConEx.conex.ConEx = function()
 		this.document = document;
 		this.processCallback = callback;
 		let body = document.body.cloneNode(true);
-		this.body = new ConEx.conex.Content(body);
-		this.processCallback(body, this.body);
+		const result = new ConEx.conex.Content(body);
+		this.processCallback(body, result);
 	}
 }

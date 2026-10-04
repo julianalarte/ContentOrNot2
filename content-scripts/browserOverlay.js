@@ -50,7 +50,11 @@ ConEx.BrowserOverlay =
 
 	execute : function()
 	{
-		console.log("Executing");
+		console.log('[execute] outerHTML snippet:', 
+			document.body.innerHTML.substring(0, 3000));
+		console.log('[execute] START — readyState='+document.readyState+
+					' bodyChildren='+document.body?.children?.length+
+					' totalNodes='+document.body?.querySelectorAll('*')?.length);
 		ConEx.BrowserOverlay.pageLoad();
 		var contentExtractor = null;
 		
@@ -103,10 +107,41 @@ ConEx.BrowserOverlay =
 	showProcessingMessage : function(contentExtractor)
 	{
 		browser.runtime.sendMessage({content: "message"});
-
-		setTimeout(function() {
+		ConEx.BrowserOverlay.waitDomStable(function() {
 			ConEx.BrowserOverlay.extraction(contentExtractor);
-		}, 350);
+		});
+	},
+
+	// Añade esta función nueva al objeto BrowserOverlay:
+	waitDomStable : function(callback)
+	{
+		const quietMs  = 600;
+		const maxWait  = 6000;
+		const started  = Date.now();
+		let   timer    = null;
+		let   mutations = 0;
+
+		const done = function() {
+			observer.disconnect();
+			clearTimeout(timer);
+			console.log('[waitDomStable] DONE — mutations='+mutations+' elapsed='+(Date.now()-started)+'ms');
+			callback();
+		};
+
+		const reset = function(list) {
+			if (list) mutations += list.length;
+			clearTimeout(timer);
+			if (Date.now() - started >= maxWait) { 
+				console.log('[waitDomStable] MAX WAIT reached');
+				done(); return; 
+			}
+			timer = setTimeout(done, quietMs);
+		};
+
+		const observer = new MutationObserver(reset);
+		observer.observe(document.body, { childList: true, subtree: true });
+		console.log('[waitDomStable] START — body children='+document.body.children.length);
+		reset();
 	},
 
 	toggleView : function(contentExtractor)

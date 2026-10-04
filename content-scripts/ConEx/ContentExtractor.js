@@ -75,25 +75,60 @@ ConEx.ContentExtractor = function(document)
 * @authors Josep Silva and Julián Alarte
 * @version 1.0 07/07/2024
 * @since 1.0
-*/		
-	this.extractedWebContent = function(contentBody, contentNodes)
-	{
-		/*this.posHide(contentNodes);
-		this.contentBody = contentNodes;
-		this.contentExtracted = true;
+*/
+this.extractedWebContent = function(contentBody, result) {
+    try {
+        this.contentExtracted = true;
+        this.lastResult = result;
+        this.contentBody = contentBody;  // ← esta línea faltaba
 
-		if (ConEx.conex.Config.textDownload == 1){
-			this.makeTextFile(this.salida);
-			var a = document.createElement("a");
-			document.body.appendChild(a);
-			a.style = "display: none";
-			a.href = this.textFile;
-			a.download = "webText.txt";
-			a.click();
-		}*/
-		
-		this.extractContentCallback();
-	}
+        const payload = {
+            url:             window.location.href,
+            result:          !!(result && result.hasContent),
+            isIndex:         result?.isIndex          ?? null,
+            repetitionScore: result?.repetitionScore  ?? null,
+            tedDetails:      result?.tedDetails        ?? null
+        };
+
+        (typeof browser !== 'undefined' ? browser : chrome)
+          .runtime
+          .sendMessage({ type: 'PAGE_RESULT', payload });
+
+    } catch (e) {
+        (typeof browser !== 'undefined' ? browser : chrome)
+          .runtime
+          .sendMessage({ type: 'PAGE_ERROR', payload: {
+              url: window.location.href,
+              error: e?.message || String(e)
+          }});
+    } finally {
+        this.extractContentCallback();
+    }
+}		
+/*this.extractedWebContent = function(contentBody, result)
+ {
+    try {
+        // Guarda estado y evita relanzar:
+        this.contentExtracted = true;
+        this.lastResult = result;
+
+        // Envía el dictamen al background:
+        const payload = {
+            url: window.location.href,
+            result: !!(result && result.hasContent)
+        };
+        (typeof browser !== 'undefined' ? browser : chrome)
+          .runtime
+          .sendMessage({ type: 'PAGE_RESULT', payload });
+    } catch (e) {
+        (typeof browser !== 'undefined' ? browser : chrome)
+          .runtime
+          .sendMessage({ type: 'PAGE_ERROR', payload: { url: window.location.href, error: e?.message || String(e) }});
+    } finally {
+        // Mantén tu flujo actual (si hubiese UI) y devuelve control
+        this.extractContentCallback();
+    }
+ }*/
 
 	/******************************************************/
 	/******************** Toogle view *********************/

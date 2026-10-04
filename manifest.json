@@ -8,7 +8,8 @@
     "48": "icons/c3.png"
   },
 
-  "permissions": ["notifications", "activeTab", "tabs", "webRequest"],
+  "permissions": ["notifications", "activeTab", "tabs", "webRequest", "downloads", "storage"],
+
 
   "background": {
     "service_worker": "background-scripts/background.js"
@@ -20,15 +21,20 @@
     "default_title": "__MSG_extensionDescription__"
   },
 
+  
+  "options_page": "options.html",
+
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "run_at": "document_idle",
+      "run_at": "document_start",
       "all_frames": true,
       "js": [ 
+        "content-scripts/ConEx/algorithm/ConEx/namespace-shim.js",
+        "content-scripts/ConEx/algorithm/ConEx/Config.js",        
+        "content-scripts/config-override.js",
         "content-scripts/createNamespaces.js",
         "content-scripts/ConEx/misc/Misc.js",
-        "content-scripts/ConEx/algorithm/ConEx/Config.js",
         "content-scripts/ConEx/algorithm/ConEx/ConEx.js",
         "content-scripts/ConEx/algorithm/ConEx/Content.js",		
         "content-scripts/ConEx/ContentExtractor.js",

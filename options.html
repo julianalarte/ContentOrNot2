@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>ContentOrNot — Lote de URLs</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 16px; }
+    textarea { width: 100%; height: 220px; }
+    label { display: block; margin-top: 12px; }
+    .row { display: flex; gap: 12px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
+    .row > * { flex: 1; min-width: 240px; }
+    .small { width: 140px; }
+    button { padding: 8px 12px; }
+    pre { background:#f6f6f6; padding:8px; max-height:300px; overflow:auto; white-space:pre-wrap; }
+    code { background: #f1f1f1; padding: 0 4px; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>ContentOrNot — Procesamiento por lotes</h1>
+
+  <h3>1) Lista de URLs (opcional etiqueta)</h3>
+  <p>
+    Escribe una URL por línea. Opcionalmente, añade <code>,CONTENT</code> o <code>,INDICE</code> tras la URL
+    (también se admite separador de tabulación).<br>
+    Ejemplos:<br>
+    <code>https://es.wikipedia.org/wiki/Fórmula_E,CONTENT</code><br>
+    <code>https://www.elmundo.es/,INDICE</code><br>
+    <code>https://ejemplo.com/página-sin-etiqueta</code>
+  </p>
+  <textarea id="urls" placeholder="https://es.wikipedia.org/wiki/Fórmula_E,CONTENT
+https://www.elmundo.es/,INDICE
+https://ejemplo.com/página-sin-etiqueta"></textarea>
+
+  <div class="row">
+    <label>Concurrencia
+      <input type="number" id="concurrency" min="1" max="10" value="3">
+    </label>
+    <label>Timeout por URL (ms)
+      <input type="number" id="timeout" min="3000" step="1000" value="20000">
+    </label>
+    <label>Espera tras carga (ms)
+      <input type="number" id="postLoadDelay" min="0" step="250" value="1500">
+    </label>
+  </div>
+
+  <div class="row">
+    <input type="file" id="file" accept=".txt,.csv" class="small">
+    <button id="import">Importar</button>
+    <button id="start" style="background:#0b5;color:white;">Iniciar</button>
+    <button id="stop" style="background:#c33;color:white;">Detener</button>
+  </div>
+
+  <h3>3) Configuración de ContentOrNot</h3>
+  <p>Estos valores sobrescriben los de <code>Config.js</code> sin modificarlo.</p>
+
+  <div class="row">
+    <label>textRatio
+      <input type="number" step="0.01" id="textRatio">
+    </label>
+    <label>multipleTextRatio
+      <input type="number" step="0.01" id="multipleTextRatio">
+    </label>
+    <label>minTextLength
+      <input type="number" step="1" id="minTextLength">
+    </label>
+  </div>
+
+  <div class="row">
+    <label>soloTextMultiplier
+      <input type="number" step="0.1" id="soloTextMultiplier">
+    </label>
+    <label>wordsPerLinkFactor
+      <input type="number" step="1" id="wordsPerLinkFactor">
+    </label>
+  </div>
+
+  <pre id="status"></pre>
+
+  <script src="options.js"></script>
+</body>
+</html>
